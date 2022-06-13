@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\CommandBus;
 use App\Commands\CreateUserCommand;
+use App\Commands\UpdateUserCommand;
+use App\Queries\UserAddressQuery;
+use App\Queries\UserContactQuery;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -30,4 +33,34 @@ class UserController extends Controller
         ]);
     }
 
+    // Actions here
+    public function showUser(string $id)
+    {
+        $query = new UserAddressQuery($id);
+        return $query->getData();
+    }
+
+    public function showUserAddresses(string $id)
+    {
+        $query = new UserAddressQuery($id);
+        return $query->getData();
+    }
+
+    public function showUserContacts(string $id)
+    {
+        $query = new UserContactQuery($id);
+        return $query->getData();
+    }
+
+    // Update
+    public function update(Request $request)
+    {
+        $command = new UpdateUserCommand(...$request->all(['id', 'firstName', 'lastName', 'addresses', 'contacts']));
+        $this->commandBus->handle($command);
+
+        return response()->json([
+            'message' => 'success',
+            'user' => $command->toArray()
+        ]);
+    }
 }
