@@ -12,13 +12,20 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    // Laravel assumes PK is an auto-incrementing integer. This means toArray returns 0.
+    // Overriding because I'm using UUID
+    public $incrementing = false;
+    protected $keyType = 'string';
+
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'firstName',
+        'lastName',
         'email',
         'password',
     ];
