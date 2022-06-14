@@ -11,12 +11,8 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    private CommandBus $commandBus;
 
-    public function __construct(CommandBus $commandBus)
-    {
-        $this->commandBus = $commandBus;
-    }
+    public function __construct(private CommandBus $commandBus) {}
 
     // Create
     public function create(Request $request)

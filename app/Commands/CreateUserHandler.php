@@ -15,12 +15,7 @@ class CreateUserHandler
     public function __invoke(CreateUserCommand $command)
     {
         // Business rules here
-        $user = new User();
-        $user->id = $command->getId();
-        $user->firstName = $command->getFirstName();
-        $user->lastName = $command->getLastName();
-        $user->save();
+        $user = User::create($command->toArray());
         return $user;
     }
 }
-

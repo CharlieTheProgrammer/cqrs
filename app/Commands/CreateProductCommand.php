@@ -12,17 +12,15 @@ use Illuminate\Support\Str;
 class CreateProductCommand implements Arrayable
 {
     private string $id;
-    private string $name;
-    private string $price;
 
-    public function __construct(string $name, string $price)
-    {
+    public function __construct(
+        private string $name,
+        private string $price,
+    ) {
         $this->id = Str::uuid();
-        $this->name = $name;
-        $this->price = $price;
     }
 
-    public function getid(): string
+    public function getId(): string
     {
         return $this->id;
     }
@@ -37,7 +35,7 @@ class CreateProductCommand implements Arrayable
         return $this->price;
     }
 
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'id' => $this->id,
