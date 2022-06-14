@@ -12,14 +12,10 @@ use Illuminate\Support\Str;
 class CreateUserCommand implements Arrayable
 {
     private string $id;
-    private string $firstName;
-    private string $lastName;
 
-    public function __construct(string $firstName, string $lastName)
+    public function __construct(private string $firstName, private string $lastName)
     {
         $this->id = Str::uuid();
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
     }
 
     public function getId(): string

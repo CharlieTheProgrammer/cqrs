@@ -4,7 +4,6 @@ namespace App\Commands;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 /**
@@ -13,20 +12,17 @@ use Illuminate\Support\Str;
  */
 class UpdateUserCommand implements Arrayable
 {
-    private string $id;
-    private string $firstName;
-    private string $lastName;
-
     // We need classes for these two below.
     private array $addresses;
     private array $contacts;
 
-    public function __construct(string $id, string $firstName, string $lastName, array $addresses, array $contacts)
-    {
-        $this->id = $id;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-
+    public function __construct(
+        private string $id,
+        private string $firstName,
+        private string $lastName,
+        array $addresses,
+        array $contacts
+    ) {
         // Iterate over addresses and contacts.
         // If they are missing an id create one.
         $this->addresses = $this->handleAddresses($addresses);
@@ -64,8 +60,8 @@ class UpdateUserCommand implements Arrayable
             'id' => $this->id,
             'firstName' => $this->firstName,
             'lastName' => $this->lastName,
-            'addresses' => Arr::map($this->addresses, fn($item) => $item->toArray()),
-            'contacts' => Arr::map($this->contacts, fn($item) => $item->toArray()),
+            'addresses' => Arr::map($this->addresses, fn ($item) => $item->toArray()),
+            'contacts' => Arr::map($this->contacts, fn ($item) => $item->toArray()),
 
         ];
     }
@@ -92,18 +88,15 @@ class UpdateUserCommand implements Arrayable
 class Address implements Arrayable
 {
     private string $id;
-    private string $addressLine1;
-    private string $city;
-    private string $state;
-    private int $postalCode;
 
-    public function __construct(string $addressLine1, string $city, string $state, int $postalCode, $id = null)
-    {
+    public function __construct(
+        private string $addressLine1,
+        private string $city,
+        private string $state,
+        private int $postalCode,
+        $id = null
+    ) {
         $this->id = $id ?? Str::uuid();
-        $this->addressLine1 = $addressLine1;
-        $this->city = $city;
-        $this->state = $state;
-        $this->postalCode = $postalCode;
     }
 
     public function getId()
@@ -148,14 +141,10 @@ class Address implements Arrayable
 class Contact implements Arrayable
 {
     private string $id;
-    private string $type;
-    private string $details;
 
-    public function __construct(string $type, string $details, $id = null)
+    public function __construct(private string $type, private string $details, $id = null)
     {
         $this->id = $id ?? Str::uuid();
-        $this->type = $type;
-        $this->details = $details;
     }
 
     public function getId()
