@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\CommandBus;
-use App\Commands\CreateProductCommand;
-use App\Queries\ProductSimpleQuery;
+use App\Domains\Product\Commands\CreateProductCommand;
+use App\Domains\Product\Queries\ProductSimpleQuery;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Commands;
+namespace App\Domains\User\Commands;
 
-use App\Commands\Address as CommandsAddress;
-use App\Commands\Contact as CommandsContact;
+use App\Domains\User\Commands\Address as CommandsAddress;
+use App\Domains\User\Commands\Contact as CommandsContact;
 use App\Models\Address;
 use App\Models\Contact;
 use App\Models\User;

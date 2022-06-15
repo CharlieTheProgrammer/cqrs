@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\CommandBus;
-use App\Commands\CreateUserCommand;
-use App\Commands\UpdateUserCommand;
-use App\Queries\UserAddressQuery;
-use App\Queries\UserContactQuery;
+use App\Domains\User\Commands\CreateUserCommand;
+use App\Domains\User\Commands\UpdateUserCommand;
+use App\Domains\User\Queries\UserAddressQuery;
+use App\Domains\User\Queries\UserContactQuery;
 use Illuminate\Http\Request;
 
 class UserController extends Controller

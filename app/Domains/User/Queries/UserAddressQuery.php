@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Queries;
+namespace App\Domains\User\Queries;
 
 use App\Models\User;
 

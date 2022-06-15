@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Commands;
+namespace App\Domains\User\Commands;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Str;
